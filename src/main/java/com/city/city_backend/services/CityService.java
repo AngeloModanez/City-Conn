@@ -24,7 +24,15 @@ public class CityService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("City not Found!"));
     }
 
-    public City create(City city){
+    public City create(City city) {
         return repository.save(city);
+    }
+
+    public void deleteById(int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("City not Found!");
+        }
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 public class CityController {
@@ -31,6 +32,11 @@ public class CityController {
     @PostMapping("cities")
     public City create(@RequestBody City city) {
         return service.create(city);
+    }
+
+    @DeleteMapping("cities/{id}")
+    public void delete(@PathVariable int id) {
+        service.deleteById(id);
     }
 
 }
