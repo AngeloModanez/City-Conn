@@ -35,4 +35,15 @@ public class CityService {
             throw new EntityNotFoundException("City not Found!");
         }
     }
+
+    public void update(int id, City city) {
+        City newCity = repository.getReferenceById(id);
+        newCity.setContinent(city.getContinent());
+        newCity.setCountry(city.getCountry());
+        newCity.setState(city.getState());
+        newCity.setCity(city.getCity());
+        newCity.setPopulation(city.getPopulation());
+        newCity.setArea(city.getArea());
+        repository.save(newCity);
+    }
 }
