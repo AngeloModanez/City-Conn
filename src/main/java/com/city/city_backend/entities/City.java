@@ -17,7 +17,7 @@ public class City {
     private String state;
     private String city;
     private int population;
-    private int area;
+    private float area;
 
     public Integer getId() {
         return id;
@@ -67,11 +67,11 @@ public class City {
         this.population = population;
     }
 
-    public int getArea() {
+    public float getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(float area) {
         this.area = area;
     }
 }
