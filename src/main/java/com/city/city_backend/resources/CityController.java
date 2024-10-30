@@ -31,17 +31,17 @@ public class CityController {
     }
 
     @PostMapping("cities")
-    public City create(@RequestBody City city) {
-        return service.create(city);
+    public City createCity(@RequestBody City city) {
+        return service.createCity(city);
     }
 
     @DeleteMapping("cities/{id}")
-    public void delete(@PathVariable int id) {
+    public void deleteById(@PathVariable int id) {
         service.deleteById(id);
     }
 
     @PutMapping("cities/{id}")
-    public void update(@PathVariable int id, @RequestBody City city) {
-        service.update(id, city);
+    public void updateCity(@PathVariable int id, @RequestBody City city) {
+        service.updateCity(id, city);
     }
 }

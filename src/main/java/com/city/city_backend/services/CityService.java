@@ -24,7 +24,7 @@ public class CityService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("City not Found!"));
     }
 
-    public City create(City city) {
+    public City createCity(City city) {
         return repository.save(city);
     }
 
@@ -36,7 +36,7 @@ public class CityService {
         }
     }
 
-    public void update(int id, City city) {
+    public void updateCity(int id, City city) {
         City newCity = repository.getReferenceById(id);
         newCity.setContinent(city.getContinent());
         newCity.setCountry(city.getCountry());
