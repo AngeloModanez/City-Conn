@@ -8,6 +8,7 @@ import com.city.city_backend.entities.City;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class CityController {
@@ -19,4 +20,10 @@ public class CityController {
     public List<City> getCities() {
         return service.getCities();
     }
+
+    @GetMapping("cities/{id}")
+    public City getCityById(@PathVariable int id) {
+        return service.getCityById(id);
+    }
+
 }

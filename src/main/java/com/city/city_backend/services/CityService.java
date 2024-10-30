@@ -8,6 +8,8 @@ import com.city.city_backend.entities.City;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class CityService {
 
@@ -16,5 +18,9 @@ public class CityService {
 
     public List<City> getCities() {
         return repository.findAll();
+    }
+
+    public City getCityById(int id) {
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("City not Found!"));
     }
 }
