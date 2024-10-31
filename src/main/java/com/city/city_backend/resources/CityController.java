@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class CityController {
     private CityService service;
@@ -39,7 +41,7 @@ public class CityController {
 
     // Status code: 201 - Created
     @PostMapping("cities")
-    public ResponseEntity<CityResponse> createCity(@RequestBody CityRequest city) {
+    public ResponseEntity<CityResponse> createCity(@Valid @RequestBody CityRequest city) {
         CityResponse newCity = service.createCity(city);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCity.id())
