@@ -5,6 +5,7 @@ import java.net.URI;
 
 import com.city.city_backend.services.CityService;
 import com.city.city_backend.entities.City;
+import com.city.city_backend.dtos.CityRequest;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class CityController {
 
     // Status code: 201 - Created
     @PostMapping("cities")
-    public ResponseEntity<City> createCity(@RequestBody City city) {
+    public ResponseEntity<City> createCity(@RequestBody CityRequest city) {
         City newCity = service.createCity(city);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCity.getId())
@@ -54,7 +55,7 @@ public class CityController {
 
     // Status code: 200 - Ok
     @PutMapping("cities/{id}")
-    public ResponseEntity<Void> updateCity(@PathVariable int id, @RequestBody City city) {
+    public ResponseEntity<Void> updateCity(@PathVariable int id, @RequestBody CityRequest city) {
         service.updateCity(id, city);
         return ResponseEntity.ok().build();
     }

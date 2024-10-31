@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.city.city_backend.repositories.CityRepository;
 import com.city.city_backend.entities.City;
+import com.city.city_backend.dtos.CityRequest;
+import com.city.city_backend.mappers.CityMapper;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class CityService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("City not Found!"));
     }
 
-    public City createCity(City city) {
-        return repository.save(city);
+    public City createCity(CityRequest dtoRequestCity) {
+        return repository.save(CityMapper.toEntity(dtoRequestCity));
     }
 
     public void deleteById(int id) {
@@ -36,14 +38,14 @@ public class CityService {
         }
     }
 
-    public void updateCity(int id, City city) {
+    public void updateCity(int id, CityRequest dtoRequestCity) {
         City newCity = repository.getReferenceById(id);
-        newCity.setContinent(city.getContinent());
-        newCity.setCountry(city.getCountry());
-        newCity.setState(city.getState());
-        newCity.setCity(city.getCity());
-        newCity.setPopulation(city.getPopulation());
-        newCity.setArea(city.getArea());
+        newCity.setContinent(dtoRequestCity.continent());
+        newCity.setCountry(dtoRequestCity.country());
+        newCity.setState(dtoRequestCity.state());
+        newCity.setCity(dtoRequestCity.city());
+        newCity.setPopulation(dtoRequestCity.population());
+        newCity.setArea(dtoRequestCity.area());
         repository.save(newCity);
     }
 }
